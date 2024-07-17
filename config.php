@@ -4253,6 +4253,10 @@ function getConnectionLink($server_id, $uniqid, $protocol, $remark, $port, $netT
                     if($tlsStatus=="xtls") $psting .= "&flow=xtls-rprx-direct";
                     if($tlsStatus=="reality") $psting .= "&fp=$fp&pbk=$pbk&sni=$sni" . ($flow != ""?"&flow=$flow":"") . "&sid=$sid&spx=$spiderX";
                     if($header_type == "http") $psting .= "&path=/&host=$host";
+                    // by Rz
+                    if($rahgozar == true) {
+                        if($customPort!=0){$port = $customPort;}
+                    }
                     $outputlink = "$protocol://$uniqid@$server_ip:$port?type=$netType&security=$tlsStatus{$psting}#$remark";
                 }elseif($netType == 'ws'){
                     if($rahgozar == true)$outputlink = "$protocol://$uniqid@$server_ip:" . ($customPort!=0?$customPort:"443") . "?type=$netType&security=tls&path=" . rawurlencode($path . ($customPath == true?"?ed=2048":"")) . "&encryption=none&host=$host{$psting}#$remark";
